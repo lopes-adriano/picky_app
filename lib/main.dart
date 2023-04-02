@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:picky/image_view.dart';
+import 'package:picky/splash.dart';
 import 'package:picky/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const Picky());
@@ -13,28 +15,23 @@ void main() {
 class Picky extends StatelessWidget {
   const Picky({super.key});
 
-  // This widget is the root of your application.
+  // Widget raíz do app
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Picky',
       theme: ThemeData.light(),
-      home: const MyHomePage(title: 'Picky'),
+      home: SplashScreen(title: 'Picky'),
+      //SplashScreen é a animação que ocorre ao abrir o app definida no arquivo splash.dart
+      //Caso não vá utilizar uma SplashScreen, defina como 'home' o widget da homepage do seu app
     );
   }
 }
 
+/*Classe que define o conjunto de widgets presentes na HomePage do app e algumas funções.
+É do tipo Stateful, visto que possui elementos que possuem diferentes estados (botões, por exemplo). */
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -45,6 +42,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   File? image;
 
+//Função para obter uma imagem de uma fonte (da câmera ou galeria)
   Future pickImage(source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -57,58 +55,52 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+/*Função para criar um botão na tela: 
+recebe como parâmetros a fonte da imagem a ser recebida pela função pickImage()
+e o texto do botão*/
+  Widget _buildButton(ImageSource source, String label) {
+    return ElevatedButton.icon(
+      label: Text(label),
+      icon: const FaIcon(FontAwesomeIcons.images),
+      onPressed: () {
+        pickImage(source);
+      },
+      style: ElevatedButton.styleFrom(
+          backgroundColor: kColorMetal,
+          // minimumSize: const Size(100, 60),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Center(
-              child: Text(
-            "Picky",
-            style: kTitleTextStyle,
-          )),
-          backgroundColor: kColorRed,
-        ),
-        body: Center(
-          child: SafeArea(
-            child: Column(
-              children: [
-                ImageView(file: image),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.camera_alt),
-                      label: const Text(
-                        'Câmera',
-                        style: kButtonText,
-                      ),
-                      onPressed: () {
-                        pickImage(ImageSource.camera);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: kColorRed,
-                        minimumSize: const Size(100, 50),
-                      ),
-                    ),
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.collections),
-                      label: const Text(
-                        'Galeria',
-                        style: kButtonText,
-                      ),
-                      onPressed: () {
-                        pickImage(ImageSource.gallery);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: kColorRed,
-                        minimumSize: const Size(100, 50),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+      appBar: AppBar(
+        title: const Center(
+            child: Text(
+          "Picky",
+          style: kTitleTextStyle,
+        )),
+        backgroundColor: kColorRed,
+      ),
+      body: Center(
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ImageView(file: image),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildButton(ImageSource.camera, 'Câmera'),
+                  _buildButton(ImageSource.gallery, 'Galeria'),
+                ],
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
