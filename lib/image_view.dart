@@ -9,27 +9,22 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 30),
-          width: 300,
-          height: 300,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: (file == null)
-                ? GFImageOverlay(
-                    height: 200,
-                    width: 300,
-                    child: Center(
-                      child: Text('Escolha uma imagem',style: kImageText,),),
-                    image: AssetImage('assets/images/strawberry_img.jpg'),
-                    colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
-                  )
-                : Image.file(file!, fit: BoxFit.cover),
-          ),
-        ),
-      ],
+    return Container(
+      width: 300,
+      height: 300,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: (file == null)
+            ? GFImageOverlay(
+                height: 300,
+                width: 300,
+                child: Center(
+                  child: Text('Escolha uma imagem',style: kImageText,),),
+                image: AssetImage('assets/images/strawberry_img.jpg'),
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken),
+              )
+            : Image.file(file!, fit: BoxFit.cover),
+      ),
     );
   }
 }

@@ -6,7 +6,9 @@ import 'package:picky/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:unicons/unicons.dart';
+
+//Cheque o arquivo pubspec.yaml para entender um pouco sobre as bibliotecas utilizadas
 
 void main() {
   runApp(const Picky());
@@ -56,47 +58,51 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 /*Função para criar um botão na tela: 
-recebe como parâmetros a fonte da imagem a ser recebida pela função pickImage()
-e o texto do botão*/
-  Widget _buildButton(ImageSource source, String label) {
-    return ElevatedButton.icon(
-      label: Text(label),
-      icon: const FaIcon(FontAwesomeIcons.images),
-      onPressed: () {
-        pickImage(source);
-      },
-      style: ElevatedButton.styleFrom(
-          backgroundColor: kColorMetal,
-          // minimumSize: const Size(100, 60),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+recebe como parâmetros a fonte da imagem a ser recebida pela função pickImage(),
+o texto do botão e o seu ícone*/
+  Widget _buildButton(ImageSource source, String label, IconData icon) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton.icon(
+        label: Text(
+          label,
+          style: kButtonText,
+        ),
+        icon: Icon(icon),
+        onPressed: () {
+          pickImage(source);
+        },
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black87,
+            minimumSize: const Size(200, 40),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-            child: Text(
-          "Picky",
-          style: kTitleTextStyle,
-        )),
-        backgroundColor: kColorRed,
-      ),
       body: Center(
         child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    
             children: [
-              ImageView(file: image),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildButton(ImageSource.camera, 'Câmera'),
-                  _buildButton(ImageSource.gallery, 'Galeria'),
-                ],
+              Container(
+                padding: const EdgeInsets.only(top:12,),
+                child: Text('Picky',style: kTitleTextStyle,),
               ),
+              Container(
+                child: Divider(color: Colors.black,thickness: 1.5,),
+                width: 100,
+              ),
+              
+              Container(
+                padding: EdgeInsets.symmetric(vertical:50),
+                child: ImageView(file: image)),
+              _buildButton(ImageSource.camera, 'Câmera', UniconsLine.camera),
+              _buildButton(ImageSource.gallery, 'Galeria', UniconsLine.images),
             ],
           ),
         ),
