@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() => this.image = imageTemp);
     } on PlatformException catch (e) {
       // ignore: avoid_print
-      print('Failed to pick image: $e');
+      print('Erro: $e');
     }
   }
 
@@ -89,6 +89,7 @@ o texto do botão e o seu ícone*/
           child: Column(
     
             children: [
+              //Título do App
               Container(
                 padding: const EdgeInsets.only(top:12,),
                 child: Text('Picky',style: kTitleTextStyle,),
@@ -98,6 +99,7 @@ o texto do botão e o seu ícone*/
                 width: 100,
               ),
               
+              //Botões
               Container(
                 padding: EdgeInsets.symmetric(vertical:50),
                 child: ImageView(file: image)),

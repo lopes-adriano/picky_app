@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
     new Timer(
       Duration(milliseconds: 10),(){
         setState(() {
-          _isVisible = true; // Now it is showing fade effect and navigating to Login page
+          _isVisible = true;
         });
       }
     );
@@ -41,8 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
 
     return Container(
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
           colors: [Colors.redAccent, kColorRed],
           begin: const FractionalOffset(0, 0),
           end: const FractionalOffset(1.0, 0.0),
@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
             width: 140.0,
             child: Center(
               child: ClipOval(
-                child: Image.asset('assets/images/strawberry_icon.png', width: 128, height: 128,), //put your logo here
+                child: Image.asset('assets/images/strawberry_icon.png', width: 128, height: 128,),
               ),
             ),
             decoration: BoxDecoration(
