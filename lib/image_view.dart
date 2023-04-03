@@ -14,8 +14,10 @@ class ImageView extends StatelessWidget {
       height: 300,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
-        child: (file == null)
+        child: (file == null) //Checa se a imagem existe ou não.
+            // Se não existir cria uma imagem temporária para ser exibida
             ? GFImageOverlay(
+              //Widget da biblioteca externa GetWidget que permite colocar um texto sobrepondo uma imagem
                 height: 300,
                 width: 300,
                 child: Center(
@@ -23,7 +25,7 @@ class ImageView extends StatelessWidget {
                 image: AssetImage('assets/images/strawberry_img.jpg'),
                 colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.darken),
               )
-            : Image.file(file!, fit: BoxFit.cover),
+            : Image.file(file!, fit: BoxFit.cover), //Se existir, exibe a imagem escolhida.
       ),
     );
   }
