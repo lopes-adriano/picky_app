@@ -102,7 +102,8 @@ o texto do botão e o seu ícone*/
               //Botões
               Container(
                 padding: EdgeInsets.symmetric(vertical:50),
-                child: ImageView(file: image)),
+                child: ImageView(file: image)
+              ),
               _buildButton(ImageSource.camera, 'Câmera', UniconsLine.camera),
               _buildButton(ImageSource.gallery, 'Galeria', UniconsLine.images),
             ],
