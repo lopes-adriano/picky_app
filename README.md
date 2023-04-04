@@ -1,16 +1,7 @@
-# picky
+# Picky
 
-A new Flutter project.
+Aplicativo referente a entrega do build da Instruction 2. É um aplicativo simples que seleciona uma imagem da câmera ou galeria do celular e exibe-a na tela.
+Caso se interesse pela versão anterior do aplicativo, assim como um guia para iniciantes em Flutter, cheque [este repositório.](https://github.com/Projeto-Frutas-Vegetais-Programa-K/prototipo-flutter)
 
-## Getting Started
+## Preview
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
