@@ -21,6 +21,7 @@ class Picky extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Picky',
       theme: ThemeData.light(),
       home: SplashScreen(title: 'Picky'),
@@ -91,7 +92,7 @@ o texto do botão e o seu ícone*/
             children: [
               //Título do App
               Container(
-                padding: const EdgeInsets.only(top:12,),
+                padding: const EdgeInsets.only(top:8.0,),
                 child: Text('Picky',style: kTitleTextStyle,),
               ),
               Container(
