@@ -6,3 +6,5 @@ Caso se interesse pela versão anterior do aplicativo, assim como um guia para i
 ## Preview
 
 <img src="assets/images/preview_images/preview-1.png" width="216" height="384">     <img src="assets/images/preview_images/preview-1.png" width="216" height="384">
+
+[Vídeo demonstrativo]()
