@@ -10,6 +10,7 @@ class ImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(50),
       width: 300,
       height: 300,
       child: ClipRRect(

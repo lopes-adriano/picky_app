@@ -1,6 +1,5 @@
 /* Arquivo que define algum dos estilos visuais utilizados no aplicativo, como estilos de fonte e cores*/
 
-
 import 'package:flutter/material.dart';
 
 const kTitleFont = 'Great Vibes';
@@ -24,6 +23,7 @@ const kButtonText = TextStyle(
     fontWeight: FontWeight.w500,
     color: Colors.white,
     decoration: TextDecoration.none);
+
 
 //Estilo do texto principal
 const kMainText = TextStyle(

@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:picky/main.dart';
+import 'package:picky/home_page.dart';
 import 'package:picky/styles.dart';
-
 
 //Animação ao abrir o app (puramente estético)
 class SplashScreen extends StatefulWidget {
@@ -18,28 +17,27 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   bool _isVisible = false;
 
-  _SplashScreenState(){
-
-    new Timer(const Duration(milliseconds: 2000), (){
+  _SplashScreenState() {
+    new Timer(const Duration(milliseconds: 2000), () {
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => MyHomePage(title: 'Picky',)), (route) => false);
+            MaterialPageRoute(
+                builder: (context) => HomePage(
+                      title: 'Picky',
+                    )),
+            (route) => false);
       });
     });
 
-    new Timer(
-      Duration(milliseconds: 10),(){
-        setState(() {
-          _isVisible = true;
-        });
-      }
-    );
-
+    new Timer(Duration(milliseconds: 10), () {
+      setState(() {
+        _isVisible = true;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -59,21 +57,24 @@ class _SplashScreenState extends State<SplashScreen> {
             width: 140.0,
             child: Center(
               child: ClipOval(
-                child: Image.asset('assets/images/strawberry_icon.png', width: 128, height: 128,),
+                child: Image.asset(
+                  'assets/images/strawberry_icon.png',
+                  width: 128,
+                  height: 128,
+                ),
               ),
             ),
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  blurRadius: 2.0,
-                  offset: Offset(5.0, 3.0),
-                  spreadRadius: 2.0,
-                )
-              ]
-            ),
+                shape: BoxShape.circle,
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 2.0,
+                    offset: Offset(5.0, 3.0),
+                    spreadRadius: 2.0,
+                  )
+                ]),
           ),
         ),
       ),
